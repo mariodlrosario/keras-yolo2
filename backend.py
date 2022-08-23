@@ -1,12 +1,12 @@
-from keras.models import Model
 import tensorflow as tf
-from keras.layers import Reshape, Activation, Conv2D, Input, MaxPooling2D, BatchNormalization, Flatten, Dense, Lambda
-from keras.layers.advanced_activations import LeakyReLU
-from keras.layers.merge import concatenate
-from keras.applications.mobilenet import MobileNet
-from keras.applications import InceptionV3
-from keras.applications.vgg16 import VGG16
-from keras.applications.resnet50 import ResNet50
+from tensorflow.python.keras.models import Model
+from tensorflow.keras.layers import Flatten, Dense, Input, Conv2D, MaxPooling2D, Dropout, Reshape, Activation, Conv2D, MaxPooling2D, BatchNormalization, Lambda
+from tensorflow.keras.layers import LeakyReLU
+from tensorflow.keras.layers import concatenate
+from tensorflow.keras.applications.mobilenet import MobileNet
+from tensorflow.keras.applications.inception_v3 import InceptionV3
+from tensorflow.keras.applications.vgg16 import VGG16
+from tensorflow.keras.applications.resnet50 import ResNet50
 
 FULL_YOLO_BACKEND_PATH  = "full_yolo_backend.h5"   # should be hosted on a server
 TINY_YOLO_BACKEND_PATH  = "tiny_yolo_backend.h5"   # should be hosted on a server
