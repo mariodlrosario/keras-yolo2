@@ -126,14 +126,17 @@ def main(args):
 
     input_size = (config['model']['input_size_h'], config['model']['input_size_w'], 3)
     feature_extractor = import_feature_extractor(config['model']['backend'], input_size)
-    grid_w = config['model']['input_size_w']/feature_extractor.get_output_shape()[1]
-    grid_h = config['model']['input_size_h']/feature_extractor.get_output_shape()[0]
+    # grid_w should be the number of grid cells, not the size of a single grid cell
+    #grid_w = config['model']['input_size_w']/feature_extractor.get_output_shape()[1]
+    #grid_h = config['model']['input_size_h']/feature_extractor.get_output_shape()[0]
+    grid_w = feature_extractor.get_output_shape()[1]
+    grid_h = feature_extractor.get_output_shape()[0]
 
     # run k_mean to find the anchors
     annotation_dims = []
     for image in train_imgs:
-        cell_w = image['width']/grid_w
-        cell_h = image['height']/grid_h
+        cell_w = float(image['width'])/grid_w
+        cell_h = float(image['height'])/grid_h
 
         for obj in image['object']:
             relative_w = (float(obj['xmax']) - float(obj['xmin']))/cell_w
